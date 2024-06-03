@@ -16,3 +16,9 @@ fields @timestamp, @message
 | display @timestamp, millis, @message
 | filter millis > <timestamp_in_milliseconds>
 ```
+```ruby
+fields @timestamp, @message, @logStream, @log
+| filter @message like /tps\/devices_to_backend/ and @timestamp > 1717338360000 and eventType like 'RuleExecution'
+| sort @timestamp asc
+| limit 10000
+```
