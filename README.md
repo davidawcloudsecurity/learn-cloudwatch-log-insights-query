@@ -8,3 +8,9 @@ fields @timestamp, @message, @logStream, @log
 | sort @timestamp desc
 | limit 1000
 ```
+```ruby
+fields @timestamp, @message
+| fields tomillis(@timestamp) as millis
+| display @timestamp, millis, @message
+| filter millis > <timestamp_in_milliseconds>
+```
