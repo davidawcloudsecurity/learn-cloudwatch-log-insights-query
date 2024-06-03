@@ -8,6 +8,9 @@ fields @timestamp, @message, @logStream, @log
 | sort @timestamp desc
 | limit 1000
 ```
+29 May 2024, 00:00:00: 1716940800000 milliseconds
+
+https://chatgpt.com/c/f2a030a6-e0e0-4e13-a7e8-c77dfa306c2d
 ```ruby
 fields @timestamp, @message
 | fields tomillis(@timestamp) as millis
