@@ -8,7 +8,33 @@ fields @timestamp, @message, @logStream, @log
 | sort @timestamp desc
 | limit 1000
 ```
+```bash
+fields @timestamp, interfaceId, srcAddr, dstAddr, action
+| filter (interfaceId = 'eni-05012345abcd' and action = 'REJECT')
+| sort @timestamp desc
+| limit 5
+```
+```bash
+filter(
+action="REJECT" and
+dstAddr like   /^(10\.|192\.168\.)/and
+srcAddrlike   /^(10\.|192\.168\.)/ and
+(
+srcAddr = "10.0.0.4" or
+dstAddr = "10.0.0.4" or
+srcAddr = "10.0.0.5" or
+dstAddr = "10.0.0.5" or
+srcAddr = "10.0.0.6" or
+dstAddr = "10.0.0.6" or
+)
+)|
+stats count(*) as records by srcAddr,dstAddr,dstPort,protocol |
+sort records desc |
+limit 5
+```
 ## Resource to change to milliseconds
+https://repost.aws/knowledge-center/vpc-flow-logs-and-cloudwatch-logs-insights
+
 https://planetcalc.com/7157/
 ```ruby
 fields @timestamp, @message
