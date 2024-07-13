@@ -15,6 +15,12 @@ fields @timestamp, interfaceId, srcAddr, dstAddr, action
 | limit 5
 ```
 ```bash
+fields @timestamp, srcAddr, dstAddr
+ | sort @timestamp desc
+ | limit 5
+ | filter srcAddr like "172.31."
+```
+```bash
 filter(
 action="REJECT" and
 dstAddr like   /^(10\.|192\.168\.)/and
