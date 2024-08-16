@@ -4,7 +4,7 @@ How to run sql query for cloudwatch log insights
 How to find flow logs that has 10.123.85.100 for ports 8834 and REJECT response
 ```ruby
 fields @timestamp, @message, @logStream, @log
-| filter @message like /10\.123\.85\.100/ and @message like /8834/ and @message like /REJECT/
+| filter @message like /10.123.85.100/ and @message like /8834/ and @message like /REJECT/
 | sort @timestamp desc
 | limit 1000
 ```
