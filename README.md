@@ -1,3 +1,11 @@
+### How to run query for network firewall
+```
+fields @timestamp, event.src_ip , event.src_port, event.dest_ip, event.dest_port, availability_zone, event.flow_id, event.proto, event.app_proto, event.event_type, event.alert.action, event.tls.sni, event.alert.signature, event.alert.signature_id
+| filter (event.src_ip = "100." and event.dest_ip = "10." and event.dest_port = 53) or (event.src_ip = "10.0" and event.src_port = 53 and event.dest_ip = "100.0")
+| sort @timestamp desc
+| limit 10000
+```
+
 # learn-cloudwatch-log-insights-query
 How to run sql query for cloudwatch log insights
 
